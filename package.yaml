@@ -39,6 +39,11 @@ dependencies:
 - gi-gdk
 - containers
 - split
+- linear
+- sdl2
+- directory
+- sdl2-image
+- StateVar
 
 ghc-options:
 - -Wall

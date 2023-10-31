@@ -32,7 +32,7 @@ startingBoardPosition = List.transpose [ [Square (Piece Rook Dark), Square (Piec
                         , [Square (Piece Rook Light), Square (Piece Knight Light), Square (Piece Bishop Light), Square (Piece Queen Light), Square (Piece King Light), Square (Piece Bishop Light), Square (Piece Knight Light), Square (Piece Rook Light)]
                         ]
 
-movePiece :: Maybe (Int, Int) -> Maybe (Int, Int) -> [[Square]] -> [[Square]]
+movePiece :: (Integral a) => Maybe (a, a) -> Maybe (a, a) -> [[Square]] -> [[Square]]
 movePiece Nothing _ board             = board
 movePiece _ Nothing board             = board
 movePiece (Just from) (Just to) board = Split.chunksOf 8 $ map (\(point, piece) -> if point == to then pieceAtSquare else (if point == from then Empty else piece)) boardWithPoints

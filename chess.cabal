@@ -27,6 +27,8 @@ library
   exposed-modules:
       Graphics.Gtk.Piece
       Graphics.Gtk.View
+      Graphics.Sdl.Piece
+      Graphics.Sdl.View
       Lib
       Model.Board.Representation
       Model.Board.SquareList
@@ -39,9 +41,11 @@ library
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      StateVar
+    , base >=4.7 && <5
     , cairo
     , containers
+    , directory
     , filepath
     , gi-cairo
     , gi-cairo-connector
@@ -54,7 +58,10 @@ library
     , gi-rsvg
     , haskell-gi
     , haskell-gi-base
+    , linear
     , mtl
+    , sdl2
+    , sdl2-image
     , split
     , text
     , transformers
@@ -70,10 +77,12 @@ executable chess-exe
       app
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      StateVar
+    , base >=4.7 && <5
     , cairo
     , chess
     , containers
+    , directory
     , filepath
     , gi-cairo
     , gi-cairo-connector
@@ -86,7 +95,10 @@ executable chess-exe
     , gi-rsvg
     , haskell-gi
     , haskell-gi-base
+    , linear
     , mtl
+    , sdl2
+    , sdl2-image
     , split
     , text
     , transformers
@@ -103,10 +115,12 @@ test-suite chess-test
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      StateVar
+    , base >=4.7 && <5
     , cairo
     , chess
     , containers
+    , directory
     , filepath
     , gi-cairo
     , gi-cairo-connector
@@ -119,7 +133,10 @@ test-suite chess-test
     , gi-rsvg
     , haskell-gi
     , haskell-gi-base
+    , linear
     , mtl
+    , sdl2
+    , sdl2-image
     , split
     , text
     , transformers

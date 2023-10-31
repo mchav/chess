@@ -1,9 +1,12 @@
 import Data.IORef
 
+import qualified Graphics.Gtk.View as Gtk
+import qualified Graphics.Sdl.View as Sdl
+
 import Model.GameState (initialGameState)
-import Graphics.Gtk.View (runBoard)
+
 
 main :: IO ()
 main = do
   gameState <- newIORef initialGameState
-  runBoard gameState
+  Sdl.runBoard gameState

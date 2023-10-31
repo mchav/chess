@@ -4,13 +4,13 @@ module Model.GameState ( GameState(..)
 import Model.Board.Representation (Board(..))
 import Model.Board.SquareList (startingBoardPosition)
 
-data GameState = GameState {
-    previouslySelectedSquare :: Maybe (Int, Int),
-    selectedSquare :: Maybe (Int, Int),
+data GameState a = GameState {
+    previouslySelectedSquare :: Maybe (a, a),
+    selectedSquare :: Maybe (a, a),
     board :: Board
   }
 
-initialGameState :: GameState
+initialGameState :: GameState a
 initialGameState = GameState {
     previouslySelectedSquare = Nothing,
     selectedSquare = Nothing,

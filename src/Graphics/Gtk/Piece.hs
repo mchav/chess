@@ -14,7 +14,7 @@ type PieceHandle = Rsvg.Handle
 
 pieceHandle :: String -> IO PieceHandle
 pieceHandle name = fromMaybe (error (name ++ " has gone missing.")) <$>
-    Rsvg.handleNewFromFile (T.pack $ "/mnt/c/Users/mscha/Code/chess" </> ("./assets/" ++ name))
+    Rsvg.handleNewFromFile (T.pack $ "/usr/local/google/home/mchavinda/code/haskell/chess" </> ("./assets/" ++ name))
 
 pieceHandles :: IO (Map.Map Piece PieceHandle)
 pieceHandles = do

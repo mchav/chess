@@ -29,7 +29,7 @@ data ViewProperties = ViewProperties {
   boardSideLength   :: Double
 }
 
-runBoard :: IORef GameState -> IO ()
+runBoard :: IORef (GameState Int) -> IO ()
 runBoard gamestate = do
   _ <- Gtk.init Nothing
   handles <- pieceHandles
@@ -56,7 +56,7 @@ runBoard gamestate = do
 
 
 onButtonPressHandler :: Gtk.DrawingArea
-                     -> IORef GameState
+                     -> IORef (GameState Int)
                      -> EventButton
                      -> IO Bool
 onButtonPressHandler drawingArea gameState e = do
@@ -76,7 +76,7 @@ onButtonPressHandler drawingArea gameState e = do
   Gtk.widgetQueueDraw drawingArea
   return True
 
-drawBoard :: Map.Map Piece PieceHandle -> IORef GameState -> Gtk.DrawingArea -> Render Bool
+drawBoard :: Map.Map Piece PieceHandle -> IORef (GameState Int) -> Gtk.DrawingArea -> Render Bool
 drawBoard handles gameState drawingArea = do
   viewProperties <- liftIO (computeViewProperties drawingArea)
   let (boardX, boardY) = boardOffsetCoords viewProperties
@@ -84,7 +84,7 @@ drawBoard handles gameState drawingArea = do
   drawGrid handles gameState boardX boardY gridSide
   return True
 
-drawGrid :: Map.Map Piece PieceHandle -> IORef GameState -> Double -> Double -> Double -> Render ()
+drawGrid :: Map.Map Piece PieceHandle -> IORef (GameState Int) -> Double -> Double -> Double -> Render ()
 drawGrid handles gameState boardX boardY side = do
   state <- liftIO $ readIORef gameState
   let previousBoard = toSquareList $ board state
