@@ -9,11 +9,14 @@ import SDL
 
 import Model.Board.SquareList
 
+import Paths_chess
+
 type PieceHandle = Texture
 
 loadTexture :: Renderer -> String -> IO Texture
 loadTexture r s = do
-  svg <- Image.load $ "/usr/local/google/home/mchavinda/code/haskell/chess" </> ("./assets/" ++ s)
+  dataDir <- getDataDir
+  svg <- Image.load $ dataDir </> ("./assets/" ++ s)
   SDL.createTextureFromSurface r svg <* SDL.freeSurface svg
 
 pieceHandles :: Renderer -> IO (Map.Map Piece PieceHandle)

@@ -56,6 +56,9 @@ ghc-options:
 - -Wpartial-fields
 - -Wredundant-constraints
 
+data-files:
+- assets/*.svg
+
 library:
   source-dirs: src
 

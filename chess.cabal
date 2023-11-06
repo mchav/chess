@@ -18,6 +18,19 @@ build-type:     Simple
 extra-source-files:
     README.md
     CHANGELOG.md
+data-files:
+    assets/bdt.svg
+    assets/blt.svg
+    assets/kdt.svg
+    assets/klt.svg
+    assets/ndt.svg
+    assets/nlt.svg
+    assets/pdt.svg
+    assets/plt.svg
+    assets/qdt.svg
+    assets/qlt.svg
+    assets/rdt.svg
+    assets/rlt.svg
 
 source-repository head
   type: git

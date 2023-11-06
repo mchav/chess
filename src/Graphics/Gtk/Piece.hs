@@ -9,12 +9,15 @@ import Data.Maybe
 import System.FilePath
 
 import Model.Board.SquareList
+import Paths_chess
 
 type PieceHandle = Rsvg.Handle
 
 pieceHandle :: String -> IO PieceHandle
-pieceHandle name = fromMaybe (error (name ++ " has gone missing.")) <$>
-    Rsvg.handleNewFromFile (T.pack $ "/usr/local/google/home/mchavinda/code/haskell/chess" </> ("./assets/" ++ name))
+pieceHandle name = do
+  dataDir <- getDataDir
+  fromMaybe (error (name ++ " has gone missing.")) <$>
+    Rsvg.handleNewFromFile (T.pack $ dataDir </> ("assets/" ++ name))
 
 pieceHandles :: IO (Map.Map Piece PieceHandle)
 pieceHandles = do

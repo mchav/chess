@@ -50,9 +50,9 @@ appLoop gameState handles renderer window = do
   event <- SDL.pollEvent
 
   let quit = fromMaybe False $ fmap (((==) SDL.QuitEvent) . SDL.eventPayload) event
-  let mouseEvent = event >>= \ e -> getMouseClickCoordinates e >>= \coords -> return coords 
+  let mouseEvent = event >>= getMouseClickCoordinates 
   let mouseCoords = fmap (coordinatesToGridPosition (boardSideLength viewProperties) (boardOffsetCoords viewProperties)) mouseEvent
-  
+
   state <- readIORef gameState
   let prevSquare = selectedSquare state
   let updatedState = case mouseCoords of
@@ -107,7 +107,7 @@ drawBoard handles gameState viewProperties renderer = do
 
 drawGrid :: Map.Map Piece PieceHandle -> IORef (GameState CInt) -> CInt -> CInt -> CInt -> Renderer -> IO ()
 drawGrid handles gameState boardX boardY side renderer = do
-  SDL.rendererDrawColor renderer $= V4 100 100 100 maxBound
+  SDL.rendererDrawColor renderer $= V4 40 40 40 maxBound
   SDL.clear renderer
   state <- readIORef gameState
   let previousBoard = toSquareList $ board state
@@ -132,8 +132,8 @@ drawGrid handles gameState boardX boardY side renderer = do
 drawSquare :: Renderer -> Colour -> CInt -> CInt -> CInt -> IO ()
 drawSquare renderer colour startX startY side = do
   case colour of
-    Black -> SDL.rendererDrawColor renderer $= V4  40  40  40 maxBound
-    White -> SDL.rendererDrawColor renderer $= V4 100 100 100 maxBound
+    Black -> SDL.rendererDrawColor renderer $= V4  85  85  85 maxBound
+    White -> SDL.rendererDrawColor renderer $= V4 170 170 170 maxBound
     Green -> SDL.rendererDrawColor renderer $= V4   0 100   0 maxBound
     Blue  -> SDL.rendererDrawColor renderer $= V4   0   0 100 maxBound
   SDL.fillRect renderer (Just $ SDL.Rectangle (P $ V2 startX startY) (V2 side side))
